@@ -1,0 +1,24 @@
+name: runner-test
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Show podman info
+      run: |
+        podman info
+        cat /etc/systemd/journald.conf
+
+    - uses: actions/checkout@v3
+
+    - name: Build image
+      run: make build
+    
+    - name: Small test
+      run: make test
+
+    - name: Big test
+      run: SIZE=200000 make test
