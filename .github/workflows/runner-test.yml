@@ -10,6 +10,7 @@ jobs:
     - name: Show podman info
       run: |
         podman info --format '{{ .Host.LogDriver }}'
+        podman create --help | grep log-driver
         podman info
         find /etc/containers -type f -exec cat {} \;
         cat /etc/systemd/journald.conf
